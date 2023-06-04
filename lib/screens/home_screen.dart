@@ -1,3 +1,4 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,9 +37,77 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              Image.asset(
-                'assets/images/House.png',
-                scale: 2,
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Positioned(
+                      top: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Image.asset(
+                            'assets/images/House.png',
+                            scale: 1.9,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: BlurryContainer(
+                        blur: 30,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(44),
+                          topRight: Radius.circular(44),
+                        ),
+                        child: Container(
+                          height: 290,
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                blurRadius: 14,
+                                spreadRadius: -30,
+                                offset: Offset(0, -273),
+                                blurStyle: BlurStyle.outer,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/');
+                                },
+                                icon: const Icon(Icons.home),
+                                color: Colors.black,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/weather');
+                                },
+                                icon: const Icon(Icons.wb_sunny),
+                                color: Colors.black,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/forecast');
+                                },
+                                icon: const Icon(Icons.wb_cloudy),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ]),
           ),
