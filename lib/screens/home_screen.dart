@@ -1,6 +1,8 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
+import '../paints/curve_painter.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -80,31 +82,16 @@ class HomePage extends StatelessWidget {
                               ],
                               borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
-                                TabBar(
-                                  indicatorColor: Colors.white,
-                                  indicator: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        color: Colors.white,
-                                        width: 1,
-                                      ),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color.fromARGB(255, 255, 255, 255),
-                                        blurRadius: 40,
-                                        spreadRadius: -40,
-                                        offset: Offset(0, 35),
-                                        blurStyle: BlurStyle.inner,
-                                      ),
+                                CustomPaint(
+                                  painter: CurvePainter(),
+                                  child: const TabBar(
+                                    tabs: [
+                                      Tab(text: 'Hourly Forecast'),
+                                      Tab(text: 'Weekly Forecast'),
                                     ],
                                   ),
-                                  tabs: [
-                                    Tab(icon: Icon(Icons.wb_sunny), text: 'Today'),
-                                    Tab(icon: Icon(Icons.wb_cloudy), text: 'Tomorrow'),
-                                  ],
                                 ),
                               ],
                             ),
