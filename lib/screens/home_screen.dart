@@ -23,21 +23,21 @@ class HomePage extends StatelessWidget {
             ),
             child: SafeArea(
               child: Column(children: [
-                const SizedBox(height: 54),
-                const Text('Uzbekistan', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w400, color: Colors.white)),
-                const Text('19°', style: TextStyle(fontSize: 96, color: Colors.white, fontWeight: FontWeight.w200)),
-                const Text('Mostly clear', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600)),
+                const SizedBox(height: 64),
+                const Text('Uzbekistan', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color: Colors.white, height: 0.1)),
+                const Text('19°', style: TextStyle(fontSize: 80, color: Colors.white, fontWeight: FontWeight.w200, height: 1.1)),
+                const Text('Mostly clear', style: TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.1)),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'H: 24',
-                      style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 10),
                     Text(
                       'L: 18',
-                      style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -48,14 +48,10 @@ class HomePage extends StatelessWidget {
                     children: [
                       Positioned(
                         top: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Image.asset(
-                              'assets/images/House.png',
-                              scale: 1.9,
-                            ),
-                          ],
+                        left: MediaQuery.of(context).size.width * 0.13,
+                        child: Image.asset(
+                          'assets/images/House.png',
+                          scale: 2.6,
                         ),
                       ),
                       Positioned(
@@ -69,14 +65,21 @@ class HomePage extends StatelessWidget {
                             topRight: Radius.circular(44),
                           ),
                           child: Container(
-                            height: 290,
+                            height: 330,
                             decoration: const BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
                                   color: Color.fromARGB(255, 255, 255, 255),
                                   blurRadius: 14,
                                   spreadRadius: -30,
-                                  offset: Offset(0, -273),
+                                  offset: Offset(0, -313),
+                                  blurStyle: BlurStyle.outer,
+                                ),
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  blurRadius: 1,
+                                  spreadRadius: 8,
+                                  offset: Offset(0, 2),
                                   blurStyle: BlurStyle.outer,
                                 ),
                               ],
@@ -84,15 +87,81 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 48,
+                                      height: 5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        color: Colors.black.withAlpha((255 * 0.3).toInt()),
+                                      ),
+                                    )
+                                  ],
+                                ),
                                 CustomPaint(
                                   painter: CurvePainter(),
-                                  child: const TabBar(
-                                    tabs: [
+                                  child: TabBar(
+                                    splashBorderRadius: BorderRadius.circular(16),
+                                    indicatorColor: Colors.white,
+                                    tabs: const [
                                       Tab(text: 'Hourly Forecast'),
                                       Tab(text: 'Weekly Forecast'),
                                     ],
                                   ),
                                 ),
+                                Expanded(
+                                  child: TabBarView(
+                                    children: [
+                                      SizedBox.fromSize(
+                                        size: const Size(100, 100),
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: 24,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              width: 60,
+                                              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(30),
+                                                color: Colors.white.withAlpha((255 * 0.3).toInt()),
+                                              ),
+                                              child: const Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text('12 PM', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white)),
+                                                  Icon(Icons.cloud, color: Colors.white, size: 30),
+                                                  Text(
+                                                    '19°',
+                                                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox.fromSize(
+                                        size: const Size(100, 100),
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: 7,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              child: Text('second'),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 90,
+                                )
                               ],
                             ),
                           ),
