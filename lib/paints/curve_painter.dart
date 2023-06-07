@@ -44,10 +44,10 @@ class NavigationPainter extends CustomPainter {
     paint.strokeWidth = 0.5;
 
     final path = Path();
-    path.moveTo(-10, 5);
+    path.moveTo(-10, 10);
     // path.lineTo(-10, 5);
     // path.moveTo(-10, size.height);
-    path.quadraticBezierTo(size.width * 0.5, 80, size.width + 10, 5);
+    path.quadraticBezierTo(size.width * 0.5, 80, size.width + 10, 10);
     // path.addArc(Rect., startAngle, sweepAngle)
     // path.lineTo(size.width, size.height);
     // path.quadraticBezierTo(size.width * 0.75, size.height * 0.3, size.width, size.height * 0.2);
