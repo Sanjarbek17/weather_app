@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/mountain.png'),
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
               ),
             ),
             child: SafeArea(
@@ -51,10 +51,10 @@ class HomePage extends StatelessWidget {
                     children: [
                       Positioned(
                         top: 0,
-                        left: MediaQuery.of(context).size.width * 0.13,
+                        left: MediaQuery.of(context).size.width * 0.1,
                         child: Image.asset(
                           'assets/images/House.png',
-                          scale: 2.6,
+                          scale: 2.2,
                         ),
                       ),
                       Positioned(
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                         right: 0,
                         bottom: 0,
                         child: BlurryContainer(
-                          blur: 30,
+                          blur: 20,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(44),
                             topRight: Radius.circular(44),
@@ -200,6 +200,15 @@ class HomePage extends StatelessWidget {
                                             child: Container(
                                               padding: const EdgeInsets.all(16),
                                               decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black.withAlpha((255 * 0.4).toInt()),
+                                                    blurRadius: 10,
+                                                    spreadRadius: 5,
+                                                    // offset: Offset(5, 4),
+                                                    blurStyle: BlurStyle.outer,
+                                                  )
+                                                ],
                                                 borderRadius: BorderRadius.circular(50),
                                                 color: Colors.white,
                                               ),

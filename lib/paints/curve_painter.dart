@@ -64,7 +64,7 @@ class NavigationPainter extends CustomPainter {
     paint2.color = Color.fromARGB((255 * 1).toInt(), 117, 130, 244);
     paint2.strokeWidth = 1;
     paint2.style = PaintingStyle.fill;
-    paint2.shader = ui.Gradient.linear(const Offset(120, 0), const Offset(120, 130), [
+    paint2.shader = ui.Gradient.linear(const Offset(120, 30), const Offset(120, 150), [
       const Color.fromARGB(255, 29, 33, 60),
       const Color.fromARGB(255, 62, 63, 116),
     ]);
@@ -80,7 +80,7 @@ class NavigationPainter extends CustomPainter {
     // path2.lineTo(210, 10);
     path2.quadraticBezierTo(260 + 9, 7, 265 + 9, 50);
     // path2.lineTo(275, 90);
-    path2.quadraticBezierTo(280 + 9, 130, 350 + 9, size.height + 10);
+    path2.quadraticBezierTo(280 + 9, 130, 340, size.height + 10);
 
     canvas.drawPath(path2, paint2);
     canvas.drawPath(path2, paint3);
