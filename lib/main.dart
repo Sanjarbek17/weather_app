@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'providers/forecast_provider.dart';
 import 'screens/forecast_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/weather_screen.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => ChangeNotifierProvider(create: (context) => ForecastProvider(), child: const HomePage()),
         '/weather': (context) => const WeatherPage(),
         '/forecast': (context) => const ForecastPage(),
       },
