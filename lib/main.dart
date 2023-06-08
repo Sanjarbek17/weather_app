@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/providers/toggle_provider.dart';
 
 import 'providers/forecast_provider.dart';
-import 'screens/forecast_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/weather_screen.dart';
 
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const HomePage(),
           '/weather': (context) => const WeatherPage(),
-          '/forecast': (context) => const ForecastPage(),
         },
       ),
     );

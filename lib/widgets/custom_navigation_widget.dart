@@ -1,11 +1,10 @@
-import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/widgets/forecast_widget.dart';
 
 import '../paints/navigation_painter.dart';
 import '../providers/toggle_provider.dart';
+import '../screens/forecast_screen.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   final double height = 370;
@@ -29,7 +28,13 @@ class CustomBottomNavigation extends StatelessWidget {
               InkWell(
                 onTap: () async {
                   toggle.toggle();
-                  var s = customBottomSheet(context);
+                  var s = showBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return const ForecastPage();
+                    },
+                  );
                   await s.closed;
                   toggle.toggle();
                 },
@@ -49,30 +54,6 @@ class CustomBottomNavigation extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  PersistentBottomSheetController<dynamic> customBottomSheet(BuildContext context) {
-    return showBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return BlurryContainer(
-          blur: 20,
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(44), topRight: Radius.circular(44)),
-          child: Container(
-            height: 660,
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(color: Color.fromARGB(255, 255, 255, 255), blurRadius: 14, spreadRadius: -30, offset: Offset(0, 17 - 660), blurStyle: BlurStyle.outer),
-                BoxShadow(color: Color.fromARGB(255, 255, 255, 255), blurRadius: 1, spreadRadius: 8, offset: Offset(0, 2), blurStyle: BlurStyle.outer),
-              ],
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
-            ),
-            child: const ForecastWidget(),
-          ),
-        );
-      },
     );
   }
 }
