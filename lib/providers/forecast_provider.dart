@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:weather_app/models/forecast_model.dart';
 
-import 'constant.dart';
+import 'constant_links.dart';
 
 class ForecastProvider with ChangeNotifier {
   final List<HourlyForecastModel> _hourlyForecasts = [

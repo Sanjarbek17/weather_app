@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/providers/toggle_provider.dart';
 
 import 'providers/forecast_provider.dart';
 import 'screens/forecast_screen.dart';
@@ -15,14 +16,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => ChangeNotifierProvider(create: (context) => ForecastProvider(), child: const HomePage()),
-        '/weather': (context) => const WeatherPage(),
-        '/forecast': (context) => const ForecastPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ForecastProvider()),
+        ChangeNotifierProvider(create: (context) => ToggleProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomePage(),
+          '/weather': (context) => const WeatherPage(),
+          '/forecast': (context) => const ForecastPage(),
+        },
+      ),
     );
   }
 }
