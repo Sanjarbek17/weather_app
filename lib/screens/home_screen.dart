@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: const Column(
                                   children: [
-                                    ForecastWidget(),
+                                    Expanded(child: ForecastWidget()),
                                     CustomBottomNavigation(),
                                   ],
                                 ),

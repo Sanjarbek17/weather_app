@@ -11,55 +11,53 @@ class ForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 48,
-                height: 5,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.black.withAlpha((255 * 0.3).toInt())),
-              )
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 48,
+              height: 5,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.black.withAlpha((255 * 0.3).toInt())),
+            )
+          ],
+        ),
+        CustomPaint(
+          painter: CurvePainter(),
+          child: TabBar(
+            splashBorderRadius: BorderRadius.circular(16),
+            indicatorColor: Colors.white,
+            tabs: const [
+              Tab(text: 'Hourly Forecast'),
+              Tab(text: 'Daily Forecast'),
             ],
           ),
-          CustomPaint(
-            painter: CurvePainter(),
-            child: TabBar(
-              splashBorderRadius: BorderRadius.circular(16),
-              indicatorColor: Colors.white,
-              tabs: const [
-                Tab(text: 'Hourly Forecast'),
-                Tab(text: 'Daily Forecast'),
+        ),
+        Flexible(
+          flex: 8,
+          child: Consumer<ForecastProvider>(
+            builder: (context, value, child) => TabBarView(
+              children: [
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: value.hourlyForecasts.length,
+                  itemBuilder: (context, index) {
+                    return castWeather(value, index);
+                  },
+                ),
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: value.hourlyForecasts.length,
+                  itemBuilder: (context, index) {
+                    return castWeather(value, index);
+                  },
+                ),
               ],
             ),
           ),
-          Expanded(
-            flex: 8,
-            child: Consumer<ForecastProvider>(
-              builder: (context, value, child) => TabBarView(
-                children: [
-                  ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: value.hourlyForecasts.length,
-                    itemBuilder: (context, index) {
-                      return castWeather(value, index);
-                    },
-                  ),
-                  ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: value.hourlyForecasts.length,
-                    itemBuilder: (context, index) {
-                      return castWeather(value, index);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
