@@ -1,12 +1,21 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/paints/sunny_painter.dart';
 
 import '../widgets/forecast_widget.dart';
 
-class ForecastPage extends StatelessWidget {
+class ForecastPage extends StatefulWidget {
   const ForecastPage({
     super.key,
   });
+
+  @override
+  State<ForecastPage> createState() => _ForecastPageState();
+}
+
+class _ForecastPageState extends State<ForecastPage> {
+  double width = 150;
+  double height = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +71,7 @@ class ForecastPage extends StatelessWidget {
                             ),
                           ),
                           Positioned(
+                            // TODO: chagne this to air quality index
                             left: 320 * 0.13,
                             child: Container(
                                 height: 6,
@@ -97,14 +107,8 @@ class ForecastPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              '4',
-                              style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500, height: 0.9),
-                            ),
-                            const Text(
-                              'Moderate',
-                              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500, height: 0.01),
-                            ),
+                            const Text('4', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500, height: 0.9)),
+                            const Text('Moderate', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500, height: 0.01)),
                             Stack(children: [
                               Container(
                                 height: 6,
@@ -118,15 +122,9 @@ class ForecastPage extends StatelessWidget {
                                 ),
                               ),
                               Positioned(
-                                left: 141 * 0.0,
-                                child: Container(
-                                    height: 6,
-                                    width: 6,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black, width: 1),
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(50),
-                                    )),
+                                // TODO: change this to uv index variebale
+                                left: 141 * 0.3,
+                                child: Container(height: 6, width: 6, decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1), color: Colors.white, borderRadius: BorderRadius.circular(50))),
                               )
                             ]),
                           ],
@@ -134,9 +132,38 @@ class ForecastPage extends StatelessWidget {
                       ),
                       customCards(
                         context,
-                        title: 'UV INDEX',
-                        icon: Icons.sunny,
-                        child: const Text('hello'),
+                        title: 'SUNRISE',
+                        icon: Icons.sunny_snowing,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('5:28 AM', style: TextStyle(color: Colors.white, fontSize: 24)),
+                            Expanded(
+                              child: CustomPaint(
+                                painter: SunnyPainter(),
+                                child: Stack(
+                                  children: [
+                                    Transform.translate(
+                                      offset: Offset(width * 0.2, height * 0.3),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 10,
+                                            height: 10,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.white, boxShadow: const [BoxShadow(color: Colors.white, blurRadius: 7)]),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const Text('Sunsert: 7:25 PM', style: TextStyle(color: Colors.white, fontSize: 12)),
+                            const SizedBox(height: 3),
+                          ],
+                        ),
                       ),
                       // const SizedBox(width: 20),
                     ],
@@ -152,12 +179,7 @@ class ForecastPage extends StatelessWidget {
                         child: const Text('hello'),
                       ),
                       // const SizedBox(width: 20),
-                      customCards(
-                        context,
-                        title: 'UV INDEX',
-                        icon: Icons.sunny,
-                        child: const Text('hello'),
-                      ),
+                      customCards(context, title: 'UV INDEX', icon: Icons.sunny, child: const Text('hello')),
                     ],
                   ),
                 ],
