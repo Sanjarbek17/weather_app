@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/paints/sunny_painter.dart';
@@ -14,8 +16,8 @@ class ForecastPage extends StatefulWidget {
 }
 
 class _ForecastPageState extends State<ForecastPage> {
-  double width = 150;
-  double height = 40;
+  final double width = 150;
+  final double height = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -174,12 +176,73 @@ class _ForecastPageState extends State<ForecastPage> {
                     children: [
                       customCards(
                         context,
-                        title: 'UV INDEX',
-                        icon: Icons.sunny,
-                        child: const Text('hello'),
+                        title: 'WIND',
+                        icon: Icons.air_outlined,
+                        child: Center(
+                            child: Stack(
+                          children: [
+                            Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.transparent,
+                                border: Border.all(color: Colors.white, width: 1),
+                              ),
+                            ),
+                            const Positioned(
+                              left: 35,
+                              top: 5,
+                              child: Text('N', style: TextStyle(color: Colors.white)),
+                            ),
+                            const Positioned(
+                              top: 30,
+                              left: 65,
+                              child: Text('E', style: TextStyle(color: Colors.white)),
+                            ),
+                            const Positioned(
+                              top: 30,
+                              left: 5,
+                              child: Text('W', style: TextStyle(color: Colors.white)),
+                            ),
+                            const Positioned(
+                              top: 60,
+                              left: 35,
+                              child: Text('S', style: TextStyle(color: Colors.white)),
+                            ),
+                            const Positioned(
+                              top: 30,
+                              left: 25,
+                              child: SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: Text('9.7 km/h',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center),
+                              ),
+                            ),
+                            Positioned(child: Transform.rotate(angle: pi - pi / 4, origin: const Offset(30, 30), child: Transform.rotate(angle: 0.8, child: const Icon(Icons.arrow_back_outlined, size: 20, color: Colors.white)))),
+                          ],
+                        )),
                       ),
                       // const SizedBox(width: 20),
-                      customCards(context, title: 'UV INDEX', icon: Icons.sunny, child: const Text('hello')),
+                      customCards(
+                        context,
+                        title: 'RAINFALL',
+                        icon: Icons.water_drop,
+                        child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text('1.8 mm in last hour', style: TextStyle(fontSize: 20, color: Colors.white)),
+                            Text('1.2 m expected in next 24h.', style: TextStyle(fontSize: 12, color: Colors.white)),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ],
