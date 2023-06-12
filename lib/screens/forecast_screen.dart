@@ -73,7 +73,6 @@ class _ForecastPageState extends State<ForecastPage> {
                             ),
                           ),
                           Positioned(
-                            // TODO: chagne this to air quality index
                             left: 320 * 0.13,
                             child: Container(
                                 height: 6,
@@ -124,7 +123,6 @@ class _ForecastPageState extends State<ForecastPage> {
                                 ),
                               ),
                               Positioned(
-                                // TODO: change this to uv index variebale
                                 left: 141 * 0.3,
                                 child: Container(height: 6, width: 6, decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1), color: Colors.white, borderRadius: BorderRadius.circular(50))),
                               )

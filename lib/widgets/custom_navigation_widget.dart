@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/screens/weather_screen.dart';
 
 import '../paints/navigation_painter.dart';
 import '../providers/toggle_provider.dart';
@@ -24,20 +25,13 @@ class CustomBottomNavigation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: SvgPicture.asset('assets/svgs/Symbol.svg', width: 44, height: 44)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const WeatherPage()));
+                  },
+                  icon: SvgPicture.asset('assets/svgs/Symbol.svg', width: 44, height: 44)),
               InkWell(
-                onTap: () async {
-                  toggle.toggle();
-                  var s = showBottomSheet(
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    builder: (context) {
-                      return const ForecastPage();
-                    },
-                  );
-                  await s.closed;
-                  toggle.toggle();
-                },
+                onTap: () async {},
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -49,7 +43,20 @@ class CustomBottomNavigation extends StatelessWidget {
                   child: SvgPicture.asset('assets/svgs/add.svg', width: 30, height: 30),
                 ),
               ),
-              IconButton(onPressed: () {}, icon: SvgPicture.asset('assets/svgs/Symbol (1).svg', width: 44, height: 44)),
+              IconButton(
+                  onPressed: () async {
+                    toggle.toggle();
+                    var s = showBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) {
+                        return const ForecastPage();
+                      },
+                    );
+                    await s.closed;
+                    toggle.toggle();
+                  },
+                  icon: SvgPicture.asset('assets/svgs/Symbol (1).svg', width: 44, height: 44)),
             ],
           ),
         ),

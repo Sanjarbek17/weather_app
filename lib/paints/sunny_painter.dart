@@ -5,7 +5,6 @@ class SunnyPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     double width = 150;
     double height = 40;
-    // TODO: implement paint
     Paint paint = Paint();
 
     paint.color = Colors.white;
