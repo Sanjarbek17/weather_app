@@ -48,7 +48,7 @@ class ForecastWidget extends StatelessWidget {
                 ),
                 ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: value.hourlyForecasts.length,
+                  itemCount: value.dailyForecastModel.length,
                   itemBuilder: (context, index) {
                     return castWeather(value, index);
                   },
@@ -88,7 +88,7 @@ class ForecastWidget extends StatelessWidget {
             children: [
               Text(value.hourlyForecasts[index].time, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
               Image.asset(value.hourlyForecasts[index].icon),
-              Text('${value.hourlyForecasts[index].temp}°', style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.white)),
+              Text('${value.hourlyForecasts[index].temp}°', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.white)),
             ],
           ),
         ),

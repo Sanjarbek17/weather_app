@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,14 +8,7 @@ import 'package:weather_app/models/forecast_model.dart';
 import 'constant_links.dart';
 
 class ForecastProvider with ChangeNotifier {
-  final List<HourlyForecastModel> _hourlyForecasts = [
-    HourlyForecastModel(time: '12 pm', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-    HourlyForecastModel(time: 'Now', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-    HourlyForecastModel(time: '12 pm', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-    HourlyForecastModel(time: '12 pm', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-    HourlyForecastModel(time: '12 pm', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-    HourlyForecastModel(time: '12 pm', temp: '19', icon: 'assets/icons/Sun cloud mid rain.png'),
-  ];
+  final List<HourlyForecastModel> _hourlyForecasts = [];
   final List<ForeCastModel> _dailyForecasts = [];
 
   // getter for hourly forecasts
@@ -26,6 +21,23 @@ class ForecastProvider with ChangeNotifier {
 
     final response = await http.get(url);
 
-    print(response.body);
+    Map data = jsonDecode(response.body);
+    print(data);
+
+    for (Map hour in data['days'][0]['hours']) {
+      _hourlyForecasts.add(HourlyForecastModel(
+        time: hour['datetime'],
+        temp: hour['temp'].toString(),
+        icon: 'assets/icons/${hour['icon']}.png',
+      ));
+    }
+
+    for (Map day in data['days']) {
+      _dailyForecasts.add(DailyForecastModel(
+        day: day['datetime'],
+        temp: day['temp'].toString(),
+        icon: 'assets/icons/${day['icon']}.png',
+      ));
+    }
   }
 }
