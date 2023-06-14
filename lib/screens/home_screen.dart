@@ -31,6 +31,9 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
+                if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                }
                 return Container(
                   decoration: isExpanded
                       ? const BoxDecoration(

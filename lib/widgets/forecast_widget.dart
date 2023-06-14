@@ -43,14 +43,14 @@ class ForecastWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: value.hourlyForecasts.length,
                   itemBuilder: (context, index) {
-                    return castWeather(value, index);
+                    return castWeather(value.hourlyForecasts, index);
                   },
                 ),
                 ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: value.dailyForecastModel.length,
                   itemBuilder: (context, index) {
-                    return castWeather(value, index);
+                    return castWeather(value.dailyForecastModel, index);
                   },
                 ),
               ],
@@ -61,7 +61,7 @@ class ForecastWidget extends StatelessWidget {
     );
   }
 
-  Column castWeather(ForecastProvider value, int index) {
+  Column castWeather(List value, int index) {
     return Column(
       children: [
         Container(
@@ -71,7 +71,7 @@ class ForecastWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: value.hourlyForecasts[index].time == 'Now' ? const Color.fromARGB(255, 72, 49, 157) : Color.fromARGB((255 * 0.3).toInt(), 72, 49, 157),
+            color: value[index].time == 'Now' ? const Color.fromARGB(255, 72, 49, 157) : Color.fromARGB((255 * 0.3).toInt(), 72, 49, 157),
             boxShadow: const [
               BoxShadow(
                 color: Color.fromARGB(160, 0, 0, 0),
@@ -86,9 +86,9 @@ class ForecastWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(value.hourlyForecasts[index].time, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
-              Image.asset(value.hourlyForecasts[index].icon),
-              Text('${value.hourlyForecasts[index].temp}°', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.white)),
+              Text(value[index].time, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
+              Image.asset(value[index].icon),
+              Text('${value[index].temp}°', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
             ],
           ),
         ),
