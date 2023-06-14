@@ -85,11 +85,13 @@ class ForecastWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(value[index].time, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
-              Image.asset(value[index].icon),
-              Text('${value[index].temp}°', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
-            ],
+            children: value[0].time != ''
+                ? [
+                    Text(value[index].time, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
+                    Image.asset(value[index].icon),
+                    Text('${value[index].temp}°', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
+                  ]
+                : [],
           ),
         ),
       ],
