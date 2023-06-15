@@ -44,11 +44,8 @@ class _ForecastPageState extends State<ForecastPage> {
                     height: 140,
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5, top: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromARGB(255, 30, 18, 67),
-                      border: Border.all(color: const Color.fromARGB(255, 81, 62, 135), width: 1),
-                    ),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: const Color.fromARGB(255, 30, 18, 67), border: Border.all(color: const Color.fromARGB(255, 81, 62, 135), width: 1)),
+                    // TITLE: this is first container
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,29 +56,18 @@ class _ForecastPageState extends State<ForecastPage> {
                             Text('AIR QUALITY', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey)),
                           ],
                         ),
+                        // TODO: get this from provider
                         const Text('3-Low Health Risk', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, height: 1.2, color: Colors.white)),
                         Stack(children: [
                           Container(
                             height: 6,
                             // width: MediaQuery.of(context).size.width - 20,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.blue[800]!,
-                                Colors.pink[400]!,
-                              ]),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
+                            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blue[800]!, Colors.pink[400]!]), borderRadius: BorderRadius.circular(30)),
                           ),
                           Positioned(
+                            // TODO: get this from provider
                             left: 320 * 0.13,
-                            child: Container(
-                                height: 6,
-                                width: 6,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black, width: 1),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50),
-                                )),
+                            child: Container(height: 6, width: 6, decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1), color: Colors.white, borderRadius: BorderRadius.circular(50))),
                           )
                         ]),
                         const Divider(color: Color.fromARGB(255, 56, 56, 58), thickness: 1),
@@ -100,6 +86,7 @@ class _ForecastPageState extends State<ForecastPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // TITLE: first left side container
                       customCards(
                         context,
                         title: 'UV INDEX',
@@ -108,21 +95,17 @@ class _ForecastPageState extends State<ForecastPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // TODO: get this from provider
                             const Text('4', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500, height: 0.9)),
                             const Text('Moderate', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500, height: 0.01)),
                             Stack(children: [
                               Container(
                                 height: 6,
                                 // width: MediaQuery.of(context).size.width - 20,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(colors: [
-                                    Colors.blue[800]!,
-                                    Colors.pink[400]!,
-                                  ]),
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
+                                decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blue[800]!, Colors.pink[400]!]), borderRadius: BorderRadius.circular(30)),
                               ),
                               Positioned(
+                                // TODO:  get this from provider
                                 left: 141 * 0.3,
                                 child: Container(height: 6, width: 6, decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1), color: Colors.white, borderRadius: BorderRadius.circular(50))),
                               )
@@ -130,6 +113,7 @@ class _ForecastPageState extends State<ForecastPage> {
                           ],
                         ),
                       ),
+                      // TITLE: first right side container
                       customCards(
                         context,
                         title: 'SUNRISE',
@@ -138,6 +122,7 @@ class _ForecastPageState extends State<ForecastPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // TODO: get this from provider
                             const Text('5:28 AM', style: TextStyle(color: Colors.white, fontSize: 24)),
                             Expanded(
                               child: CustomPaint(
@@ -145,21 +130,17 @@ class _ForecastPageState extends State<ForecastPage> {
                                 child: Stack(
                                   children: [
                                     Transform.translate(
+                                      // TODO: get this from provider
                                       offset: Offset(width * 0.2, height * 0.3),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: 10,
-                                            height: 10,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.white, boxShadow: const [BoxShadow(color: Colors.white, blurRadius: 7)]),
-                                          ),
-                                        ],
-                                      ),
+                                      child: Row(children: [
+                                        Container(width: 10, height: 10, decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.white, boxShadow: const [BoxShadow(color: Colors.white, blurRadius: 7)])),
+                                      ]),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
+                            // TODO: get this from provider
                             const Text('Sunsert: 7:25 PM', style: TextStyle(color: Colors.white, fontSize: 12)),
                             const SizedBox(height: 3),
                           ],
@@ -172,6 +153,7 @@ class _ForecastPageState extends State<ForecastPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // TITLE: second left side container
                       customCards(
                         context,
                         title: 'WIND',
@@ -182,52 +164,29 @@ class _ForecastPageState extends State<ForecastPage> {
                             Container(
                               width: 80,
                               height: 80,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.transparent,
-                                border: Border.all(color: Colors.white, width: 1),
-                              ),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.transparent, border: Border.all(color: Colors.white, width: 1)),
                             ),
-                            const Positioned(
-                              left: 35,
-                              top: 5,
-                              child: Text('N', style: TextStyle(color: Colors.white)),
-                            ),
-                            const Positioned(
-                              top: 30,
-                              left: 65,
-                              child: Text('E', style: TextStyle(color: Colors.white)),
-                            ),
-                            const Positioned(
-                              top: 30,
-                              left: 5,
-                              child: Text('W', style: TextStyle(color: Colors.white)),
-                            ),
-                            const Positioned(
-                              top: 60,
-                              left: 35,
-                              child: Text('S', style: TextStyle(color: Colors.white)),
-                            ),
+                            const Positioned(left: 35, top: 5, child: Text('N', style: TextStyle(color: Colors.white))),
+                            const Positioned(top: 30, left: 65, child: Text('E', style: TextStyle(color: Colors.white))),
+                            const Positioned(top: 30, left: 5, child: Text('W', style: TextStyle(color: Colors.white))),
+                            const Positioned(top: 60, left: 35, child: Text('S', style: TextStyle(color: Colors.white))),
                             const Positioned(
                               top: 30,
                               left: 25,
                               child: SizedBox(
                                 width: 30,
                                 height: 30,
-                                child: Text('9.7 km/h',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    textAlign: TextAlign.center),
+                                // TODO: get this from provider
+                                child: Text('9.7 km/h', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w500), textAlign: TextAlign.center),
                               ),
                             ),
+                            // TODO: get this from provider
                             Positioned(child: Transform.rotate(angle: pi - pi / 4, origin: const Offset(30, 30), child: Transform.rotate(angle: 0.8, child: const Icon(Icons.arrow_back_outlined, size: 20, color: Colors.white)))),
                           ],
                         )),
                       ),
                       // const SizedBox(width: 20),
+                      // TITLE: second right side container
                       customCards(
                         context,
                         title: 'RAINFALL',
@@ -236,6 +195,7 @@ class _ForecastPageState extends State<ForecastPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            // TODO: get this from provider
                             Text('1.8 mm in last hour', style: TextStyle(fontSize: 20, color: Colors.white)),
                             Text('1.2 m expected in next 24h.', style: TextStyle(fontSize: 12, color: Colors.white)),
                           ],
@@ -257,11 +217,7 @@ class _ForecastPageState extends State<ForecastPage> {
       height: 130,
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 9),
       width: MediaQuery.of(context).size.width / 2 - 35,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(255, 36, 24, 71),
-        border: Border.all(color: const Color.fromARGB(255, 81, 62, 135), width: 1),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: const Color.fromARGB(255, 36, 24, 71), border: Border.all(color: const Color.fromARGB(255, 81, 62, 135), width: 1)),
       child: Column(
         children: [
           Row(

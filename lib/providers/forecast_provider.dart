@@ -26,6 +26,8 @@ class ForecastProvider with ChangeNotifier {
     DailyForecastModel(time: '', temp: '', icon: ''),
   ];
 
+  // final String 
+
   // getter for hourly forecasts
   List<HourlyForecastModel> get hourlyForecasts => [..._hourlyForecasts];
 

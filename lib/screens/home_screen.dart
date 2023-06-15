@@ -50,13 +50,22 @@ class _HomePageState extends State<HomePage> {
             child: SafeArea(
               child: Column(children: [
                 const SizedBox(height: 64),
+                // TODO: get this to provider
                 const Text('Uzbekistan', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color: Colors.white, height: 0.3)),
+                // TODO: get this from provider
                 isExpanded ? const Text('19°', style: TextStyle(fontSize: 80, color: Colors.white, fontWeight: FontWeight.w200, height: 1.3)) : const Text('19° | Mostly clear', style: TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.5)),
+                // TODO: get this from provider
                 isExpanded ? const Text('Mostly clear', style: TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.1)) : const SizedBox(),
                 isExpanded
                     ? const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text('H: 24', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)), SizedBox(width: 10), Text('L: 18', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600))],
+                        children: [
+                          // TODO: get this from provider
+                          Text('H: 24', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
+                          SizedBox(width: 10),
+                          // TODO: get this from provider
+                          Text('L: 18', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
+                        ],
                       )
                     : const SizedBox(),
                 const SizedBox(height: 20),
