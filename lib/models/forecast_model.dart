@@ -1,16 +1,17 @@
 import 'package:intl/intl.dart';
 
 class ForeCastModel {
-  String temp;
-  String icon;
+  final String temp;
+  final String icon;
 
-  ForeCastModel({required this.temp, required this.icon});
+  const ForeCastModel({required this.temp, required this.icon});
 }
 
 class HourlyForecastModel extends ForeCastModel {
-  String time;
+  final String time;
+  final String condition;
 
-  HourlyForecastModel({required this.time, required super.temp, required super.icon});
+  const HourlyForecastModel({required this.condition, required this.time, required super.temp, required super.icon});
 
   factory HourlyForecastModel.fromJson(Map json) {
     // Parse the input time string into a DateTime object
@@ -24,6 +25,7 @@ class HourlyForecastModel extends ForeCastModel {
 
     // print(outputTime); // Output: 1 AM
     return HourlyForecastModel(
+      condition: json['conditions'],
       time: outputTime,
       temp: json['temp'].toString(),
       icon: 'assets/icons/${json['icon']}.png',
@@ -32,9 +34,11 @@ class HourlyForecastModel extends ForeCastModel {
 }
 
 class DailyForecastModel extends ForeCastModel {
-  String time;
+  final String time;
+  final double tempmax;
+  final double tempmin;
 
-  DailyForecastModel({required this.time, required super.temp, required super.icon});
+  const DailyForecastModel({required this.tempmax,required this.tempmin, required this.time, required super.temp, required super.icon});
 
   factory DailyForecastModel.fromJson(Map json) {
     // Parse the input time string into a DateTime object
@@ -47,6 +51,8 @@ class DailyForecastModel extends ForeCastModel {
 
     // print(outputTime); // Output: 1 AM
     return DailyForecastModel(
+      tempmax: json['tempmax'],
+      tempmin: json['tempmin'],
       time: outputTime,
       temp: json['temp'].toString(),
       icon: 'assets/icons/${json['icon']}.png',

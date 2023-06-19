@@ -48,9 +48,9 @@ class ForecastWidget extends StatelessWidget {
                 ),
                 ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: value.dailyForecastModel.length,
+                  itemCount: value.dailyForecasts.length,
                   itemBuilder: (context, index) {
-                    return castWeather(value.dailyForecastModel, index);
+                    return castWeather(value.dailyForecasts, index);
                   },
                 ),
               ],

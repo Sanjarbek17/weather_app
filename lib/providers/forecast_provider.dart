@@ -9,40 +9,36 @@ import 'package:weather_app/models/forecast_model.dart';
 import 'constant_links.dart';
 
 class ForecastProvider with ChangeNotifier {
-  final List<HourlyForecastModel> _hourlyForecasts = [
-    HourlyForecastModel(time: '', temp: '', icon: ''),
-    HourlyForecastModel(time: '', temp: '', icon: ''),
-    HourlyForecastModel(time: '', temp: '', icon: ''),
-    HourlyForecastModel(time: '', temp: '', icon: ''),
-    HourlyForecastModel(time: '', temp: '', icon: ''),
-    HourlyForecastModel(time: '', temp: '', icon: ''),
+  final List<HourlyForecastModel> hourlyForecasts = [
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
+    const HourlyForecastModel(condition: '', time: '', temp: '', icon: ''),
   ];
-  final List<ForeCastModel> _dailyForecasts = [
-    DailyForecastModel(time: '', temp: '', icon: ''),
-    DailyForecastModel(time: '', temp: '', icon: ''),
-    DailyForecastModel(time: '', temp: '', icon: ''),
-    DailyForecastModel(time: '', temp: '', icon: ''),
-    DailyForecastModel(time: '', temp: '', icon: ''),
-    DailyForecastModel(time: '', temp: '', icon: ''),
+  final List<DailyForecastModel> dailyForecasts = [
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
+    const DailyForecastModel(time: '', temp: '', icon: '', tempmax: 0, tempmin: 0),
   ];
 
-  // final String 
-
-  // getter for hourly forecasts
-  List<HourlyForecastModel> get hourlyForecasts => [..._hourlyForecasts];
-
-  List<ForeCastModel> get dailyForecastModel => [..._dailyForecasts];
+  final String locationName = 'Uzbekistan';
 
   Future<void> getData() async {
-    Uri url = Uri.parse(baseUrl('Tashkent'));
+    Uri url = Uri.parse(baseUrl(locationName));
 
     final response = await http.get(url);
 
     Map data = jsonDecode(response.body);
 
     bool isNow = false;
-    _hourlyForecasts.clear();
-    _dailyForecasts.clear();
+    hourlyForecasts.clear();
+    dailyForecasts.clear();
+    int index = 0;
     for (Map hour in data['days'][0]['hours']) {
       DateTime dateTime = DateTime.parse("2023-06-14 ${hour['datetime']}");
 
@@ -53,12 +49,16 @@ class ForecastProvider with ChangeNotifier {
         isNow = true;
       }
       if (isNow) {
-        _hourlyForecasts.add(HourlyForecastModel.fromJson(hour));
+        hourlyForecasts.add(HourlyForecastModel.fromJson(hour));
       }
     }
 
     for (Map day in data['days']) {
-      _dailyForecasts.add(DailyForecastModel.fromJson(day));
+      if (index == 7) {
+        break;
+      }
+      index++;
+      dailyForecasts.add(DailyForecastModel.fromJson(day));
     }
 
     notifyListeners();

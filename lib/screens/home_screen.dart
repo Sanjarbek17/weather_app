@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<ForecastProvider>().getData();
   }
@@ -27,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     bool isExpanded = context.watch<ToggleProvider>().isExpanded;
+    ForecastProvider forecast = context.watch<ForecastProvider>();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -50,21 +50,21 @@ class _HomePageState extends State<HomePage> {
             child: SafeArea(
               child: Column(children: [
                 const SizedBox(height: 64),
-                // TODO: get this to provider
-                const Text('Uzbekistan', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color: Colors.white, height: 0.3)),
-                // TODO: get this from provider
-                isExpanded ? const Text('19°', style: TextStyle(fontSize: 80, color: Colors.white, fontWeight: FontWeight.w200, height: 1.3)) : const Text('19° | Mostly clear', style: TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.5)),
-                // TODO: get this from provider
-                isExpanded ? const Text('Mostly clear', style: TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.1)) : const SizedBox(),
+                Text(forecast.locationName, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color: Colors.white, height: 0.3)),
                 isExpanded
-                    ? const Row(
+                    ? Text(forecast.hourlyForecasts[0].temp, style: const TextStyle(fontSize: 80, color: Colors.white, fontWeight: FontWeight.w200, height: 1.3))
+                    : Text(
+                        '${forecast.hourlyForecasts[0].temp} | ${forecast.hourlyForecasts[0].condition}',
+                        style: const TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.5),
+                      ),
+                isExpanded ? Text(forecast.hourlyForecasts[0].condition, softWrap: true, style: const TextStyle(fontSize: 17, color: Color.fromARGB(255, 197, 197, 197), fontWeight: FontWeight.w600, height: 1.1)) : const SizedBox(),
+                isExpanded
+                    ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // TODO: get this from provider
-                          Text('H: 24', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
-                          SizedBox(width: 10),
-                          // TODO: get this from provider
-                          Text('L: 18', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
+                          Text('H: ${forecast.dailyForecasts[0].tempmax}', style: const TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
+                          const SizedBox(width: 10),
+                          Text('L: ${forecast.dailyForecasts[0].tempmin}', style: const TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
                         ],
                       )
                     : const SizedBox(),
