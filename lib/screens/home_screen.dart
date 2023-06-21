@@ -1,8 +1,8 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/providers/forecast_provider.dart';
-import 'package:weather_app/providers/toggle_provider.dart';
+import '../providers/forecast_provider.dart';
+import '../providers/toggle_provider.dart';
 
 import '../widgets/custom_navigation_widget.dart';
 import '../widgets/forecast_widget.dart';
@@ -71,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 20),
                 Expanded(
                   child: Stack(
+                    clipBehavior: Clip.none,
                     fit: StackFit.expand,
                     children: [
                       isExpanded
@@ -84,23 +85,34 @@ class _HomePageState extends State<HomePage> {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        child: BlurryContainer(
-                          blur: 20,
-                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(44), topRight: Radius.circular(44)),
-                          child: Container(
-                            height: 370,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(color: const Color.fromARGB(255, 255, 255, 255), blurRadius: 14, spreadRadius: -30, offset: Offset(0, 17 - height), blurStyle: BlurStyle.outer),
-                                const BoxShadow(color: Color.fromARGB(255, 255, 255, 255), blurRadius: 1, spreadRadius: 8, offset: Offset(0, 2), blurStyle: BlurStyle.outer),
-                              ],
-                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
-                            ),
-                            child: const Column(
-                              children: [
-                                Expanded(child: ForecastWidget()),
-                                CustomBottomNavigation(),
-                              ],
+                        child: GestureDetector(
+                          onVerticalDragUpdate: (details) {
+                            print(details.localPosition);
+                            setState(() {
+                              height = 470 - details.localPosition.dy;
+                              if (height < 0) {
+                                height = 370;
+                              }
+                            });
+                          },
+                          child: BlurryContainer(
+                            blur: 20,
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(44), topRight: Radius.circular(44)),
+                            child: Container(
+                              height: height,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(color: const Color.fromARGB(255, 255, 255, 255), blurRadius: 14, spreadRadius: -30, offset: Offset(0, 17 - height), blurStyle: BlurStyle.outer),
+                                  const BoxShadow(color: Color.fromARGB(255, 255, 255, 255), blurRadius: 1, spreadRadius: 8, offset: Offset(0, 2), blurStyle: BlurStyle.outer),
+                                ],
+                                borderRadius: const BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                              ),
+                              child: const Column(
+                                children: [
+                                  Expanded(child: ForecastWidget()),
+                                  CustomBottomNavigation(),
+                                ],
+                              ),
                             ),
                           ),
                         ),

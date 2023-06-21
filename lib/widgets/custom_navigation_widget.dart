@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/screens/weather_screen.dart';
+import '../screens/weather_screen.dart';
 
 import '../paints/navigation_painter.dart';
 import '../providers/toggle_provider.dart';

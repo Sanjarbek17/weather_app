@@ -57,6 +57,7 @@ class WeatherPage extends StatelessWidget {
                   ],
                 ),
                 child: TextField(
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     prefixIconColor: Color.fromARGB((255 * 0.6).toInt(), 235, 235, 245),
                     prefixIcon: const Icon(Icons.search),

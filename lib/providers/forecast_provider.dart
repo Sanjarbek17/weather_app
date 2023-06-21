@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import 'package:weather_app/models/forecast_model.dart';
+import '../models/forecast_model.dart';
 
 import 'constant_links.dart';
 
@@ -27,6 +27,11 @@ class ForecastProvider with ChangeNotifier {
   ];
 
   final String locationName = 'Uzbekistan';
+
+  set locationName(String value) {
+    locationName = value;
+    notifyListeners();
+  }
 
   Future<void> getData() async {
     Uri url = Uri.parse(baseUrl(locationName));

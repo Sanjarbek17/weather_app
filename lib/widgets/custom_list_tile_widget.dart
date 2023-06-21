@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/paints/list_tile_painter.dart';
+import '../paints/list_tile_painter.dart';
 
 class CustomListTileWidget extends StatelessWidget {
   const CustomListTileWidget({super.key});
@@ -32,10 +32,7 @@ class CustomListTileWidget extends StatelessWidget {
                   const Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        '19°',
-                        style: TextStyle(fontSize: 64, fontWeight: FontWeight.w400, color: Colors.white),
-                      ),
+                      Text('19°', style: TextStyle(fontSize: 64, fontWeight: FontWeight.w400, color: Colors.white)),
                     ],
                   ),
                   const SizedBox(height: 150),
@@ -52,16 +49,7 @@ class CustomListTileWidget extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'H:24°   L:18°',
-                        style: TextStyle(fontSize: 17, color: Colors.grey, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        'Samarkand, Uzbekistan',
-                        style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600),
-                      )
-                    ],
+                    children: [Text('H:24°   L:18°', style: TextStyle(fontSize: 17, color: Colors.grey, fontWeight: FontWeight.w600)), Text('Samarkand, Uzbekistan', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600))],
                   ),
                   Text('Mid Rain', style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600)),
                 ],

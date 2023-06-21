@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/paints/sunny_painter.dart';
+import '../paints/sunny_painter.dart';
 
 import '../widgets/forecast_widget.dart';
 
