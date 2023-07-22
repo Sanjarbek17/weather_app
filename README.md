@@ -2,6 +2,15 @@
 
 A new Flutter project.
 
+## Description
+
+This is a weather app that uses the Visual Crossing weather API to get the weather data for a given city. The app uses the `flutter_provider` to manage the state of the app. The app also uses the http package to make the API calls.
+
+## Screenshots
+
+<img src="flutter_02.png" width="300" height="600">
+<img src="flutter_01.png" width="300" height="600">
+<img src="flutter_03.png" width="300" height="600">
 ## Getting Started
 
 This project is a starting point for a Flutter application.
