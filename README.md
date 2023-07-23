@@ -9,9 +9,11 @@ I have also used custom_pain widget to draw shapes that cannot be drawn using th
 
 ## Screenshots
 
-<img src="flutter_02.png" width="300" height="600">
-<img src="flutter_01.png" width="300" height="600">
-<img src="flutter_03.png" width="300" height="600">
+<div style="display: flex; flex-direction: row;">
+  <img src="flutter_02.png" width="300" height="600">
+  <img src="flutter_01.png" width="300" height="600">
+  <img src="flutter_03.png" width="300" height="600">
+</div>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
